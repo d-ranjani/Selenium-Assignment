@@ -1,0 +1,101 @@
+Code 1:
+
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+
+public class assignment{
+
+	
+	public static void main(String[] args) {
+		
+		
+		
+		//Location of the chrome driver
+		System.setProperty("webdriver.chrome.driver","H:\\Workspace\\SeleniumFF\\Lib\\chromedriver.exe");
+		WebDriver driver=new ChromeDriver();
+		
+		
+		//implicit wait for 30 seconds
+		driver.manage().timeouts().implicitlyWait(30,TimeUnit.SECONDS);
+		
+		
+		//Load the URL
+		driver.get("https://accounts.google.com/");
+        
+		//Enter email id by using sendkeys
+		driver.findElement(By.id("Email")).sendKeys("ranjanijune20@gmail.com");
+		
+		//Click Next button
+	    driver.findElement(By.id("next")).click();
+		
+	   //Enter Password by using sendkeys
+		driver.findElement(By.id("Passwd")).sendKeys("ranjanijuly25");
+		
+		//Click Login button
+		driver.findElement(By.id("signIn")).click();
+	}
+
+}
+
+
+
+Code 2:
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.Assert;
+
+
+public class assignment1 {
+
+	public static void main(String[] args) {
+		
+		
+		//Open Firefox browser 
+		WebDriver driver=new FirefoxDriver();
+		
+		
+		//implicit wait
+        driver.manage().timeouts().implicitlyWait(30,TimeUnit.SECONDS);
+		
+		
+		//Load the URL
+		driver.get("https://www.google.co.in");
+		
+		//Click 
+		driver.findElement(By.linkText("Gmail")).click();
+		
+		//Send email
+		driver.findElement(By.id("Email")).sendKeys("ranjanijune20@gmail.com");
+				
+		//Click Next button
+	    driver.findElement(By.id("next")).click();
+		
+		//Click a sign in with different account
+		driver.findElement(By.xpath("/html/body/div/div[2]/div[2]/div[2]/div/div/p[1]/span[1]/a")).click();
+
+		//Click a Next button
+		driver.findElement(By.id("next")).click();
+		
+		//Print the alert Message and compare the alert .
+		String actual_msg=driver.findElement(By.id("errormsg_0_Email")).getText();
+		String expect="Please enter your email.";
+		Assert.assertEquals(actual_msg, expect);
+		System.out.println("Error Message is : "+actual_msg);
+		
+	}
+	
+
+}
+
+	
+
+}
